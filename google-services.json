@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "86681265127",
+    "project_id": "fusion-services",
+    "storage_bucket": "fusion-services.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86681265127:android:4295ade59d4aabb6efd342",
+        "android_client_info": {
+          "package_name": "host.exp.exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86681265127-kr330fpeve5eb4ca4rsnd7ag05nvhneo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlUKAZRI5_xpgY1_blKPztDpuzvcH36Qc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86681265127-kr330fpeve5eb4ca4rsnd7ag05nvhneo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86681265127-pb2be5p2ps0lghkf260kf4lnv68e5kiu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
