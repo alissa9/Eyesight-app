@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import {
@@ -62,14 +62,16 @@ export const AuthProvider = ({ children }) => {
             .catch(error => setError(error)).finally(() => setLoading(false));
     };
 
-
-
+    // cashing the values to give it whicmkes it quicker without the need to e render again
+    const memoedValue = useMemo(
+        () => ({
+            user, loading, error,
+            signInWithGoogle, logout,
+        }), [user, loading, error]
+    );
     return (
-        <AuthContext.Provider
-            value={{
-                user, loading, error,
-                signInWithGoogle, logout,
-            }}
+        <AuthContext.Provider value={memoedValue}
+
         >
             {!loadingIntial && children}
         </AuthContext.Provider >
