@@ -40,6 +40,11 @@ const HomeScreen = () => {
 
             <View style={{ marginTop: 15, flexDirection: "row" }}>
                 <GooglePlacesAutocomplete
+                    query={{ key: "AIzaSyCEzWUbpQmcga6G7TL4cz3d1sWGoPdFPzM" }}
+                    onPress={(data, details = null) => {
+                        console.log(data.description)
+
+                    }}
                     placeholder='Enter Location'
                     styles={{
                         textInput: {
