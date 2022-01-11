@@ -5,6 +5,9 @@ import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons"
 import useAuth from "../hooks/useAuth";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'tailwind-rn';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
+
 
 
 const HomeScreen = () => {
@@ -35,10 +38,51 @@ const HomeScreen = () => {
             </View>
             {/* End of Header */}
 
-            {/* <Button title="Go to Chat Screen" onPress={() => navigation.navigate("Chat")} />
+            <View style={{ marginTop: 15, flexDirection: "row" }}>
+                <GooglePlacesAutocomplete
+                    placeholder='Enter Location'
+                    styles={{
+                        textInput: {
+                            backgroundColor: "#eee",
+                            borderRadius: 20,
+                            fontWeight: "700",
+                            marginTop: 7,
+                        },
+                        textInputContainer: {
+                            backgroundColor: "#eee",
+                            borderRadius: 50,
+                            flexDirection: "row",
+                            alignItems: "center",
+                            marginRight: "10",
+                        },
+                    }}
+                    renderLeftButton={() => (<View style={{ marginLeft: 15 }}>
+                        <Ionicons name='location-sharp' size={24} />
+                    </View>)}
+                    renderRightButton={() => (<View
+                        style={{
+                            marginRight: 15, flexDirection: "row",
+                            backgroundColor: "white",
+                            padding: 9,
+                            borderRadius: 30,
+                            alignItems: "center",
+                        }}>
+                        <AntDesign name='clockcircle' size={20} />
+                        <Text>Search</Text>
+                    </View>)}
 
-            <Button title="Logout" onPress={logout} /> */}
-        </SafeAreaView>
+
+                />
+
+
+
+            </View>
+            <View>
+                <Button title="Go to Chat Screen" onPress={() => navigation.navigate("Chat")} />
+
+                <Button title="Logout" onPress={logout} />
+            </View>
+        </SafeAreaView >
     )
 }
 
