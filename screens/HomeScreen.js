@@ -1,11 +1,12 @@
 import React, { useLayoutEffect } from 'react';
 import { useNavigation } from "@react-navigation/core"
 import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
-import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons"
+import { AntDesign, Entypo, Ionicons, Feather } from "@expo/vector-icons"
 import useAuth from "../hooks/useAuth";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'tailwind-rn';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { FontAwesome } from '@expo/vector-icons';
 
 
 
@@ -32,7 +33,7 @@ const HomeScreen = () => {
                     <Image style={tw("h-16 w-16")} source={require("../assets/logo.png")} />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate("Chat")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
                     <Ionicons name='chatbubbles-sharp' size={30} color='#66c6ba' />
                 </TouchableOpacity>
             </View>
@@ -82,10 +83,14 @@ const HomeScreen = () => {
 
 
             </View>
-            <View>
-                <Button title="Go to Chat Screen" onPress={() => navigation.navigate("Chat")} />
+            <View alignItems="center">
 
-                <Button title="Logout" onPress={logout} />
+                <FontAwesome.Button name="camera" color="black" size="50" backgroundColor="transparent" onPress={() => navigation.navigate("Camera")}
+
+                >
+
+                </FontAwesome.Button>
+
             </View>
         </SafeAreaView >
     )
