@@ -8,12 +8,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAfU_nS8HeCbR63u0IKzLabehz0p59hxsA",
-    authDomain: "fusion-services.firebaseapp.com",
-    projectId: "fusion-services",
-    storageBucket: "fusion-services.appspot.com",
-    messagingSenderId: "86681265127",
-    appId: "1:86681265127:web:1e5c4ac8f2cd0555efd342"
+  apiKey: "AIzaSyAfU_nS8HeCbR63u0IKzLabehz0p59hxsA",
+  authDomain: "fusion-services.firebaseapp.com",
+  projectId: "fusion-services",
+  storageBucket: "fusion-services.appspot.com",
+  messagingSenderId: "86681265127",
+  appId: "1:86681265127:web:1e5c4ac8f2cd0555efd342",
 };
 
 // Initialize Firebase
@@ -21,4 +21,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
-export { auth, db }
+export { auth, db };

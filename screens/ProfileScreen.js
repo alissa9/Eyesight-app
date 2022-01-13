@@ -1,126 +1,115 @@
-import React , { useState }from 'react'
-import { View, Text,SafeAreaView,TouchableOpacity ,Image,TextInput} from 'react-native'
-import { useNavigation } from "@react-navigation/core"
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from "react-native";
+import { useNavigation } from "@react-navigation/core";
 import useAuth from "../hooks/useAuth";
-import tw from 'tailwind-rn';
-import { serverTimestamp, setDoc ,doc } from 'firebase/firestore';
+import tw from "tailwind-rn";
+import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
 
-
-
-
-
-
 const ProfileScreen = () => {
-    const navigation = useNavigation();
-    const { user, logout } = useAuth();
-    // console.log(user);
+  const navigation = useNavigation();
+  const { user, logout } = useAuth();
+  // console.log(user);
 
+  const [image, setImage] = useState(null);
+  const [age, setAge] = useState(null);
+  const [occupation, setOccupation] = useState(null);
+  const incompleteForm = !image || !age || !occupation;
 
-    const [image, setImage] = useState(null);
-    const [age, setAge] = useState(null);
-    const [occupation, setOccupation] = useState(null);
-    const incompleteForm = !image || !age || !occupation
+  const updateUserProfile = () => {
+    setDoc(doc(db, "users", user.uid), {
+      id: user.uid,
+      displayName: user.displayName,
+      photoURL: image,
+      occupation: occupation,
+      age: age,
+      timestamp: serverTimestamp(),
+    })
+      .then(() => {
+        navigation.navigate("Home");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
 
-    const updateUserProfile = () => {
-        setDoc(doc(db, 'users', user.uid), { 
-            id: user.uid,
-            displayName: user.displayName,
-            photoURL: image,
-            occupation: occupation,
-            age: age,
-            timestamp: serverTimestamp()
-        }).then(() => {
-            navigation.navigate('Home')
-            
-        }).catch(error => {
-            alert(error.message);
-        })
-        
-    }
-    
+  return (
+    <View style={tw("flex-1 items-center pt-1")}>
+      <Image
+        style={tw("h-20 w-full")}
+        resizeMode="contain"
+        source={require("../assets/logo2.png")}
+      />
 
+      <Text style={tw("text-xl text-gray-700 p-2 font-bold")}>
+        Name: {user.displayName}
+      </Text>
+      <Text style={tw("text-center text-gray-700 p-2 font-bold")}>
+        Email: {user.email}
+      </Text>
 
-    return (
-        <View style={tw("flex-1 items-center pt-1")}>
+      <Text style={tw("text-center p-3 font-bold text-green-400")}>
+        Profile Picture
+      </Text>
 
-            <Image
-                style={tw("h-20 w-full")}
-                resizeMode='contain'
-                source={require("../assets/logo2.png")} 
-            />
-                    
-            <Text style={tw("text-xl text-gray-700 p-2 font-bold")}>
-                Name: {user.displayName}
-            </Text>
-            <Text style={tw("text-center text-gray-700 p-2 font-bold")}>
-                 Email: {user.email}
-            </Text >
-            
+      <TextInput
+        value={image}
+        onChangeText={setImage}
+        placeholder="Enter New Profile Pic URL"
+      />
+      <Text style={tw("text-center p-3 font-bold text-green-400")}></Text>
 
-            <Text style={tw("text-center p-3 font-bold text-green-400")}>
-                 Profile Picture
-            </Text>
+      <Text style={tw("text-center p-3 font-bold text-green-400")}>
+        Occupation
+      </Text>
+      <TextInput
+        value={occupation}
+        onChangeText={setOccupation}
+        placeholder="Enter your Occupation"
+      />
+      <Text style={tw("text-center p-3 font-bold text-green-400")}></Text>
 
-            <TextInput
-                value={image}
-                onChangeText={setImage}
-                
-                placeholder="Enter New Profile Pic URL" />
-            <Text style={tw("text-center p-3 font-bold text-green-400")}>
-            </Text>
+      <Text style={tw("text-center p-3 font-bold text-green-400")}>
+        The Age
+      </Text>
+      <TextInput
+        value={age}
+        onChangeText={setAge}
+        placeholder="Enter your Age"
+        maxLength={2}
+        keyboardType="numeric"
+      />
+      <Text style={tw("text-center p-4 font-bold text-green-400")}></Text>
 
-            <Text style={tw("text-center p-3 font-bold text-green-400")}>
-                 Occupation
-            </Text>
-            <TextInput
-                value={occupation}
-                onChangeText={setOccupation}
-                placeholder="Enter your Occupation" />
-            <Text style={tw("text-center p-3 font-bold text-green-400")}>
-            </Text>
-            
+      <TouchableOpacity
+        disabled={incompleteForm}
+        style={[
+          tw("w-64 p-3 rounded-xl  "),
+          incompleteForm ? tw("bg-gray-400") : tw("bg-blue-400"),
+        ]}
+        onPress={updateUserProfile}
+      >
+        <Text style={tw("text-center text-white text-xl")}>
+          {" "}
+          Update Profile{" "}
+        </Text>
+      </TouchableOpacity>
 
-            <Text style={tw("text-center p-3 font-bold text-green-400")}>
-                 The Age
-            </Text>
-            <TextInput
-                value={age}
-                onChangeText={setAge}
-                placeholder="Enter your Age"
-                maxLength={2}
-                keyboardType='numeric'
-            
-            />
-            <Text style={tw("text-center p-4 font-bold text-green-400")}>
-            </Text>
-            
-            <TouchableOpacity
-                disabled={incompleteForm}
-                style={[tw("w-64 p-3 rounded-xl  "),
-                    incompleteForm ? tw("bg-gray-400") : tw("bg-blue-400")]}
-            onPress={updateUserProfile}
-            
-            >
-                <Text style={tw("text-center text-white text-xl")}> Update Profile </Text>
-            </TouchableOpacity>
-            
-               <TouchableOpacity
-                
-                style={tw("w-64 p-3 rounded-xl bg-red-500 mt-12 ")}
-                    
-            onPress={logout}
-            
-            >
-                <Text style={tw("text-center text-white text-xl")}> Logout </Text>
-           </TouchableOpacity>
-            
-            
-      </View>
-        
-        
-    
-    )
-}
+      <TouchableOpacity
+        style={tw("w-64 p-3 rounded-xl bg-red-500 mt-12 ")}
+        onPress={logout}
+      >
+        <Text style={tw("text-center text-white text-xl")}> Logout </Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
-export default ProfileScreen
+export default ProfileScreen;
