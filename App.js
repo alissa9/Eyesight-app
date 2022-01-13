@@ -9,11 +9,12 @@ import { LogBox } from 'react-native';
 LogBox.ignoreAllLogs();
 
 
+
+
 // auth Provider wrapping the children for the authentication requirements
 export default function App() {
   return (
     <NavigationContainer>
-
       <AuthProvider>
         <StackNavigator />
       </AuthProvider>

@@ -1,12 +1,11 @@
 import React, { useLayoutEffect } from 'react';
 import { useNavigation } from "@react-navigation/core"
 import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
-import { AntDesign, Entypo, Ionicons, Feather } from "@expo/vector-icons"
+import { AntDesign, Entypo, Ionicons, Feather, FontAwesome } from "@expo/vector-icons"
 import useAuth from "../hooks/useAuth";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'tailwind-rn';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { FontAwesome } from '@expo/vector-icons';
 
 
 
@@ -19,12 +18,12 @@ const HomeScreen = () => {
 
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={tw('flex-1 ')}>
             {/* Header */}
             <View style={tw("flex-row items-center justify-between px-5")}>
-                <TouchableOpacity onPress={logout}>
+                <TouchableOpacity>
 
-                    <Image source={{ uri: user.photoURL }} style={tw("h-12 w-12 rounded-full")} />
+                    <Image source={{ uri: user.photoURL }} style={tw("h-16 w-16 rounded-full mt-2")} />
                 </TouchableOpacity>
 
 
@@ -33,66 +32,41 @@ const HomeScreen = () => {
                     <Image style={tw("h-20 w-20 bg-transparent")} source={require("../assets/logo.png")} />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+               
+            </View>
 
-                    <AntDesign name="rightcircleo" size={35} color='#5dc9d5' />
-                </TouchableOpacity>
+            <View style={tw("w-40  p-2 rounded-xl bg-gray-300 ml-2 mt-3")}>
+                <Text style={tw(" font-bold italic")}>
+                Welcome {user.displayName} !
+            </Text>
             </View>
             {/* End of Header */}
 
-            <View style={{ marginTop: 15, flexDirection: "row" }}>
-                <GooglePlacesAutocomplete
-                    query={{ key: "AIzaSyCEzWUbpQmcga6G7TL4cz3d1sWGoPdFPzM" }}
-                    onPress={(data, details = null) => {
-                        console.log(data.description)
+            {/* Start of Body */}
 
-                    }}
-                    placeholder='Enter Location'
-                    styles={{
-                        textInput: {
-                            backgroundColor: "#eee",
-                            borderRadius: 20,
-                            fontWeight: "700",
-                            marginTop: 7,
-                        },
-                        textInputContainer: {
-                            backgroundColor: "#eee",
-                            borderRadius: 50,
-                            flexDirection: "row",
-                            alignItems: "center",
-                            marginRight: "10",
-                        },
-                    }}
-                    renderLeftButton={() => (<View style={{ marginLeft: 15 }}>
-                        <Ionicons name='location-sharp' size={24} />
-                    </View>)}
-                    renderRightButton={() => (<View
-                        style={{
-                            marginRight: 15, flexDirection: "row",
-                            backgroundColor: "white",
-                            padding: 9,
-                            borderRadius: 30,
-                            alignItems: "center",
-                        }}>
-                        <AntDesign name='clockcircle' size={20} />
-                        <Text>Search</Text>
-                    </View>)}
+            {/* End of Body */}
+           
+            {/* Start of Footer */}
+            <View style={tw("flex-row items-center justify-between px-5 absolute inset-x-12 bottom-0 h-40 mb-2 ")}>
+            
+                <TouchableOpacity
+                    style={tw(" bg-red-300  ")}
+                    onPress={() => navigation.navigate("Profile")}>
+                    <AntDesign name="profile" size={50} color="black" />
+                </TouchableOpacity>
 
-
-                />
-
-
-
-            </View>
-            <View alignItems="center">
-
-                <FontAwesome.Button name="camera" color="black" size="50" backgroundColor="transparent" onPress={() => navigation.navigate("Camera")}
-
+                 <TouchableOpacity style={tw("bg-red-300 ")}
+                onPress={() => navigation.navigate("Camera")}
                 >
+               <Entypo name="camera" size={50}  />
+                </TouchableOpacity>
 
-                </FontAwesome.Button>
+
 
             </View>
+
+           {/* End of Footer */}
+
         </SafeAreaView >
     )
 }

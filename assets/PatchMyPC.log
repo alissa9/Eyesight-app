@@ -1,0 +1,14 @@
+1/12/2022 8:41:23 PM - Patch My PC Started
+1/12/2022 8:41:23 PM - Checking connection to patchmypc.com
+1/12/2022 8:41:24 PM - Verified connection to patchmypc.com. Status Code: 200
+1/12/2022 8:41:24 PM - Getting latest definitions from patchmypc.com
+1/12/2022 8:41:24 PM - Definition load completed in: 0.15 seconds
+1/12/2022 8:41:24 PM - Microsoft.Win32.TaskScheduler.dll not found in Global Assembly Cache
+1/12/2022 8:41:24 PM - Downloading: https://patchmypc.com/freeupdater/applications/taskscheduler/gacutil.exe to C:\Users\Issa\AppData\Roaming\PatchMyPC\gacutil.exe
+1/12/2022 8:41:24 PM - Patch My PC version 4.2.0.4 is running. The latest is 4.2.0.4
+1/12/2022 8:41:24 PM - Performing scan of installed applications
+1/12/2022 8:41:24 PM - Downloading: https://patchmypc.com/freeupdater/applications/taskscheduler/gacutil.exe.config to C:\Users\Issa\AppData\Roaming\PatchMyPC\gacutil.exe.config
+1/12/2022 8:41:24 PM - Scan completed in: 0.47 seconds
+1/12/2022 8:41:25 PM - Downloading: https://patchmypc.com/freeupdater/applications/taskscheduler/gacutlrc.dll to C:\Users\Issa\AppData\Roaming\PatchMyPC\1033\gacutlrc.dll
+1/12/2022 8:41:25 PM - Downloading: https://patchmypc.com/freeupdater/applications/taskschedulerv4.0/Microsoft.Win32.TaskScheduler.dll to C:\Users\Issa\AppData\Roaming\PatchMyPC\Microsoft.Win32.TaskScheduler.dll
+1/12/2022 8:41:25 PM - Running: C:\Users\Issa\AppData\Roaming\PatchMyPC\gacutil.exe /i C:\Users\Issa\AppData\Roaming\PatchMyPC\Microsoft.Win32.TaskScheduler.dll

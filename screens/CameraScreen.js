@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Alert, Platform, Image, Button } from 'react-native';
 import { Camera } from 'expo-camera';
 import { AntDesign } from '@expo/vector-icons';
-
-
+import * as ImagePicker from 'expo-image-picker';
 
 
 
@@ -13,6 +12,7 @@ export default function App() {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
     const cameraRef = useRef(null);
+    const [image, setImage] = useState(null);
 
 
 
@@ -27,7 +27,7 @@ export default function App() {
                     base64: true
                 });
                 return photo;
-                const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
+
 
             } catch (e) {
                 console.log(e);
@@ -36,9 +36,54 @@ export default function App() {
 
 
     }
+    const chooseFromLibrary = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
 
-    const chooseFromLibrary = () => {
+        console.log(result);
 
+        if (!result.cancelled) {
+            setImage(result.uri);
+        }
+    };
+
+    useEffect(() => {
+        (async () => {
+            const reponse = await checkForLabels()
+            console.log(reponse)
+
+        })()
+
+    }, [])
+    async function checkForLabels(base64) {
+        return await
+            fetch("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCEzWUbpQmcga6G7TL4cz3d1sWGoPdFPzM", {
+                method: 'POST',
+                body: JSON.stringify({
+                    "requests": [
+                        {
+                            "image": {
+                                "content": base64
+                            },
+                            "features": [
+                                {
+                                    "type": "LABEL_DETECTION"
+                                }
+                            ]
+                        }
+                    ]
+                })
+            }).then((response) => {
+                return response.json();
+            }, (err) => {
+                console.error('promise rejected')
+                console.error(err)
+            });
     }
 
     useEffect(() => {
@@ -61,16 +106,20 @@ export default function App() {
                 <SafeAreaView style={{ alignItems: 'center', flexDirection: "row", justifyContent: 'space-around', marginTop: 720, }}>
                     <TouchableOpacity style={{ position: 'absoulte', bottom: 0, flex: 0, backgroundColor: 'beige', borderRadius: "12" }}
                         onPress={async () => {
-                            const r = await takePhotoFromCamera();
-                            Alert.alert("Debug", JSON.stringify(r))
+                            const base64 = await takePhotoFromCamera();
+                            // Alert.alert("Debug", JSON.stringify(r))
+                            // console.log(JSON.stringify(base64));
+
                         }}>
 
                         <AntDesign name="camerao" size={70} color="black" />
                     </TouchableOpacity>
-                    {/* <TouchableOpacity style={{ position: 'absoulte', bottom: 0, flex: 0, backgroundColor: 'beige', borderRadius: "12" }} onPress={chooseFromLibrary}>
+                    <TouchableOpacity style={{ position: 'absoulte', bottom: 0, flex: 0, backgroundColor: 'beige', borderRadius: "12" }} onPress={chooseFromLibrary}>
 
                         <AntDesign name="picture" size={70} color="black" />
-                    </TouchableOpacity> */}
+
+
+                    </TouchableOpacity>
                 </SafeAreaView>
             </Camera>
 
