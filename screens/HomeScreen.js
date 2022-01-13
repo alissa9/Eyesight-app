@@ -24,17 +24,18 @@ const HomeScreen = () => {
             <View style={tw("flex-row items-center justify-between px-5")}>
                 <TouchableOpacity onPress={logout}>
 
-                    <Image source={{ uri: user.photoURL }} style={tw("h-10 w-10 rounded-full")} />
+                    <Image source={{ uri: user.photoURL }} style={tw("h-12 w-12 rounded-full")} />
                 </TouchableOpacity>
 
 
 
                 <TouchableOpacity>
-                    <Image style={tw("h-16 w-16")} source={require("../assets/logo.png")} />
+                    <Image style={tw("h-20 w-20 bg-transparent")} source={require("../assets/logo.png")} />
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-                    <Ionicons name='chatbubbles-sharp' size={30} color='#66c6ba' />
+
+                    <AntDesign name="rightcircleo" size={35} color='#5dc9d5' />
                 </TouchableOpacity>
             </View>
             {/* End of Header */}
