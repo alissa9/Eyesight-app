@@ -18,16 +18,16 @@ const ProfileScreen = () => {
   const { user, logout } = useAuth();
   // console.log(user);
 
-  const [image, setImage] = useState(null);
+  const [bio, setBio] = useState(null);
   const [age, setAge] = useState(null);
   const [occupation, setOccupation] = useState(null);
-  const incompleteForm = !image || !age || !occupation;
+  const incompleteForm = !bio || !age || !occupation;
 
   const updateUserProfile = () => {
     setDoc(doc(db, "users", user.uid), {
       id: user.uid,
       displayName: user.displayName,
-      photoURL: image,
+      bio: bio,
       occupation: occupation,
       age: age,
       timestamp: serverTimestamp(),
@@ -41,11 +41,11 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View style={tw("flex-1 items-center pt-1")}>
+    <SafeAreaView style={tw("flex-1 items-center pt-2")}>
       <Image
         style={tw("h-20 w-full")}
         resizeMode="contain"
-        source={require("../assets/logo2.png")}
+        source={require("../assets/logo.png")}
       />
 
       <Text style={tw("text-xl text-gray-700 p-2 font-bold")}>
@@ -56,14 +56,10 @@ const ProfileScreen = () => {
       </Text>
 
       <Text style={tw("text-center p-3 font-bold text-green-400")}>
-        Profile Picture
+        Biographical info
       </Text>
 
-      <TextInput
-        value={image}
-        onChangeText={setImage}
-        placeholder="Enter New Profile Pic URL"
-      />
+      <TextInput onChangeText={setBio} placeholder="Enter your info" />
       <Text style={tw("text-center p-3 font-bold text-green-400")}></Text>
 
       <Text style={tw("text-center p-3 font-bold text-green-400")}>
@@ -108,7 +104,7 @@ const ProfileScreen = () => {
       >
         <Text style={tw("text-center text-white text-xl")}> Logout </Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

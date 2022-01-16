@@ -5,6 +5,7 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import CameraScreen from "./screens/CameraScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import TabNavigator from "./TabNavigator";
 
 import useAuth from "./hooks/useAuth";
 
@@ -18,11 +19,11 @@ const StackNavigator = () => {
     >
       {user ? (
         <>
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home2" component={TabNavigator} />
           <Stack.Screen name="Camera" component={CameraScreen} />
-          <Stack.Group screenOptions={{ presentation: "modal" }}>
-            <Stack.Screen name="Profile" component={ProfileScreen} />
-          </Stack.Group>
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+
+          <Stack.Group screenOptions={{ presentation: "modal" }}></Stack.Group>
         </>
       ) : (
         <Stack.Screen name="Login" component={LoginScreen} />

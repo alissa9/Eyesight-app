@@ -20,6 +20,7 @@ export default function App() {
   const cameraRef = useRef(null);
   const [image, setImage] = useState(null);
 
+  // TODO: CAMERA FUNCTION
   const takePhotoFromCamera = async () => {
     if (cameraRef) {
       console.log("in take picture from camera");
