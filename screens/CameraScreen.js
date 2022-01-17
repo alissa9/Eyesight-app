@@ -13,9 +13,12 @@ import {
 import { Camera } from "expo-camera";
 import { AntDesign } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
+import ModalResults from "../components/ModalResults";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [objectLables, setObjectLabels] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const cameraRef = useRef(null);
   const [image, setImage] = useState(null);
@@ -31,6 +34,11 @@ export default function App() {
           quality: 0.5,
           base64: true,
         });
+        const response = await checkForLabels(photo.base64);
+        const labels = response.responses[0].labelAnnotations;
+
+        setObjectLabels(labels);
+        setShowModal(true);
         return photo;
       } catch (e) {
         console.log(e);
@@ -39,17 +47,21 @@ export default function App() {
   };
   const chooseFromLibrary = async () => {
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
+    let photo = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
+      base64: true,
     });
 
-    console.log(result);
+    const response = await checkForLabels(photo.base64);
+    const labels = response.responses[0].labelAnnotations;
+    setObjectLabels(labels);
+    setShowModal(true);
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (!photo.cancelled) {
+      setImage(photo.uri);
     }
   };
 
@@ -72,6 +84,7 @@ export default function App() {
               },
               features: [
                 {
+                  maxResults: 10,
                   type: "LABEL_DETECTION",
                 },
               ],
@@ -114,6 +127,7 @@ export default function App() {
             marginTop: 720,
           }}
         >
+          <ModalResults showModal={showModal} objectLables={objectLables} />
           <TouchableOpacity
             style={{
               position: "absoulte",
@@ -122,11 +136,12 @@ export default function App() {
               backgroundColor: "beige",
               borderRadius: "12",
             }}
-            onPress={async () => {
-              const base64 = await takePhotoFromCamera();
+            onPress={
+              () => takePhotoFromCamera()
+              // const base64 = await takePhotoFromCamera();
               // Alert.alert("Debug", JSON.stringify(r))
               // console.log(JSON.stringify(base64));
-            }}
+            }
           >
             <AntDesign name="camerao" size={70} color="black" />
           </TouchableOpacity>
