@@ -1,92 +1,50 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
-
+import tw from "tailwind-rn";
 const ModalResults = ({ showModal, objectLables }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  if (modalVisible) {
-    return <></>;
-  }
+  // if (modalVisible) {
+  //   return <></>;
+  // }
   return (
-    <View style={styles.centeredView}>
+    <View style={tw(" justify-center items-center ")}>
       <Modal
         animationType="slide"
         transparent={true}
-        visible={showModal}
+        visible={modalVisible}
         onRequestClose={() => {
           console.log("closed");
-          Alert.alert("Modal has been closed.");
+          Aert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+        <View style={tw("flex-1 justify-center items-center ")}>
+          <View style={tw(" bg-white rounded-md  items-center ")}>
             {objectLables &&
               objectLables.map((label, index) => (
-                <Text key={index}>{label.description}</Text>
+                <Text style={tw("font-extrabold mt-2 ")} key={index}>
+                  {label.description}
+                </Text>
               ))}
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={tw("rounded-md p-6 bg-gray-200 mt-10 mb-10 ")}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text style={tw("text-blue-400 font-bold")}>Hide Results</Text>
             </Pressable>
           </View>
         </View>
       </Modal>
 
       <Pressable
-        style={[styles.button, styles.buttonOpen]}
+        style={tw("bg-white p-3 rounded-2xl ")}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.textStyle}>Show Modal</Text>
+        <Text style={tw("text-red-400 font-bold")}>Show Results</Text>
       </Pressable>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
 
 export default ModalResults;

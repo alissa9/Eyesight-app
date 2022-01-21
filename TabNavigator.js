@@ -12,8 +12,8 @@ const TabNavigator = () => {
       screenOptions={{
         tabBarShowLabel: false,
         headerShown: false,
-        tabBarStyle: { backgroundColor: "#64ddde", height: 120 },
-        tabBarActiveTintColor: "black",
+        tabBarStyle: { backgroundColor: "#4747ff", height: 120 },
+        tabBarActiveTintColor: "yellow",
         tabBarInactiveTintColor: "#fff",
       }}
     >

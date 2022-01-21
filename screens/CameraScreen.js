@@ -14,6 +14,7 @@ import { Camera } from "expo-camera";
 import { AntDesign } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import ModalResults from "../components/ModalResults";
+import tw from "tailwind-rn";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -23,7 +24,7 @@ export default function App() {
   const cameraRef = useRef(null);
   const [image, setImage] = useState(null);
 
-  // TODO: CAMERA FUNCTION
+  // take photo from phone
   const takePhotoFromCamera = async () => {
     if (cameraRef) {
       console.log("in take picture from camera");
@@ -45,6 +46,8 @@ export default function App() {
       }
     }
   };
+
+  // Choose a photo from library
   const chooseFromLibrary = async () => {
     // No permissions request is necessary for launching the image library
     let photo = await ImagePicker.launchImageLibraryAsync({
@@ -117,46 +120,34 @@ export default function App() {
     return <Text>No access to camera</Text>;
   }
   return (
-    <View style={{ flex: 1 }}>
-      <Camera style={{ flex: 1 }} type={type} ref={cameraRef}>
+    <View style={tw("flex-1 ")}>
+      <Camera style={tw("flex-1")} type={type} ref={cameraRef}>
         <SafeAreaView
-          style={{
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            marginTop: 720,
-          }}
+        // style={tw("items-center flex-row justify-between  ")}
         >
-          <ModalResults showModal={showModal} objectLables={objectLables} />
           <TouchableOpacity
-            style={{
-              position: "absoulte",
-              bottom: 0,
-              flex: 0,
-              backgroundColor: "beige",
-              borderRadius: "12",
-            }}
-            onPress={
-              () => takePhotoFromCamera()
-              // const base64 = await takePhotoFromCamera();
-              // Alert.alert("Debug", JSON.stringify(r))
-              // console.log(JSON.stringify(base64));
-            }
-          >
-            <AntDesign name="camerao" size={70} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              position: "absoulte",
-              bottom: 0,
-              flex: 0,
-              backgroundColor: "beige",
-              borderRadius: "12",
-            }}
+            style={tw("absolute top-0 right-0 mt-16 mr-4 bg-white rounded-2xl")}
             onPress={chooseFromLibrary}
           >
             <AntDesign name="picture" size={70} color="black" />
           </TouchableOpacity>
+        </SafeAreaView>
+
+        <SafeAreaView style={tw("absolute bottom-4")}>
+          <SafeAreaView style={tw("items-center flex-row justify-between ")}>
+            <ModalResults showModal={showModal} objectLables={objectLables} />
+            <TouchableOpacity
+              style={tw("bg-white rounded-2xl ")}
+              onPress={
+                () => takePhotoFromCamera()
+                // const base64 = await takePhotoFromCamera();
+                // Alert.alert("Debug", JSON.stringify(r))
+                // console.log(JSON.stringify(base64));
+              }
+            >
+              <AntDesign name="camerao" size={70} color="black" />
+            </TouchableOpacity>
+          </SafeAreaView>
         </SafeAreaView>
       </Camera>
     </View>

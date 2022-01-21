@@ -48,21 +48,21 @@ const ProfileScreen = () => {
         source={require("../assets/logo.png")}
       />
 
-      <Text style={tw("text-xl text-gray-700 p-2 font-bold")}>
+      <Text style={tw("text-2xl text-gray-700 p-2 font-bold")}>
         Name: {user.displayName}
       </Text>
-      <Text style={tw("text-center text-gray-700 p-2 font-bold")}>
+      <Text style={tw("text-xl  text-center text-gray-700 p-2 font-bold")}>
         Email: {user.email}
       </Text>
 
-      <Text style={tw("text-center p-3 font-bold text-green-400")}>
+      <Text style={tw("text-lg  text-center p-3 font-bold text-blue-400")}>
         Biographical info
       </Text>
 
       <TextInput onChangeText={setBio} placeholder="Enter your info" />
-      <Text style={tw("text-center p-3 font-bold text-green-400")}></Text>
+      <Text style={tw(" text-lg text-center p-2 font-bold")}></Text>
 
-      <Text style={tw("text-center p-3 font-bold text-green-400")}>
+      <Text style={tw("text-lg text-center p-2 font-bold text-blue-400")}>
         Occupation
       </Text>
       <TextInput
@@ -70,9 +70,9 @@ const ProfileScreen = () => {
         onChangeText={setOccupation}
         placeholder="Enter your Occupation"
       />
-      <Text style={tw("text-center p-3 font-bold text-green-400")}></Text>
+      <Text style={tw("text-lg text-center p-2 font-bold ")}></Text>
 
-      <Text style={tw("text-center p-3 font-bold text-green-400")}>
+      <Text style={tw("text-lg text-center p-2 font-bold text-blue-400")}>
         The Age
       </Text>
       <TextInput
@@ -82,7 +82,9 @@ const ProfileScreen = () => {
         maxLength={2}
         keyboardType="numeric"
       />
-      <Text style={tw("text-center p-4 font-bold text-green-400")}></Text>
+      <Text
+        style={tw("text-lg text-center p-2 font-bold text-green-400")}
+      ></Text>
 
       <TouchableOpacity
         disabled={incompleteForm}

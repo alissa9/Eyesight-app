@@ -1,20 +1,41 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/core";
-import { View, Text, Button, TouchableOpacity, Image } from "react-native";
 import {
-  AntDesign,
-  Entypo,
-  Ionicons,
-  Feather,
-  FontAwesome,
-} from "@expo/vector-icons";
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from "react-native";
 import useAuth from "../hooks/useAuth";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "tailwind-rn";
+import * as Speech from "expo-speech";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const { user, logout } = useAuth();
+  const [name, setName] = useState("");
+
+  // getting the voices options then print them to console to choose
+  const listAllVoice0ptions = async () => {
+    let voices = await Speech.getAvailableVoicesAsync();
+    // console.log(voices);
+  };
+  useEffect(listAllVoice0ptions);
+
+  // Text To Speech function which
+  //  takes text input to speech
+  const textToSpeech = () => {
+    const tts = `${name}`;
+    options = {
+      voice: "com.apple.ttsbundle.siri_Arthur_en-GB_compact",
+      pitch: 1.2,
+      rate: 0.8,
+    };
+    Speech.speak(tts, options);
+  };
 
   return (
     <SafeAreaView style={tw("flex-1 ")}>
@@ -31,27 +52,40 @@ const HomeScreen = () => {
 
       <View
         style={tw(
-          "   rounded-xl bg-gray-100 flex-row items-center justify-between px-3 "
+          "rounded-xl bg-gray-100 flex-row items-center justify-between px-3 "
         )}
       >
-        <Text style={tw(" font-bold italic ")}>
+        <Text style={tw(" font-bold italic  text-xl text-blue-700")}>
           Welcome {user.displayName} !
         </Text>
         <TouchableOpacity>
           <Image
             source={{ uri: user.photoURL }}
-            style={tw("h-14 w-14 rounded-full mt-2")}
+            style={tw("h-16 w-16 rounded-full mt-")}
           />
         </TouchableOpacity>
       </View>
       {/* End of Header */}
       {/* Start of Body */}
 
+      <View style={tw("m-10")}>
+        <Text style={tw("mb-5 font-bold text-2xl ")}>Text To Speech</Text>
+        <TextInput
+          onChangeText={setName}
+          value={name}
+          style={tw("h-14 text-xl bg-gray-200")}
+          placeholder=" Enter your Text"
+        />
+        <TouchableOpacity
+          style={tw("w-40  p-5 rounded-2xl bg-blue-400 mt-5  self-center")}
+          title="Speak it"
+          onPress={textToSpeech}
+        >
+          <Text style={tw("text-center text-white text-xl")}> Speak it </Text>
+        </TouchableOpacity>
+      </View>
+
       {/* End of Body */}
-
-      {/* Start of Footer */}
-
-      {/* End of Footer */}
     </SafeAreaView>
   );
 };
