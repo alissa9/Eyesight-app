@@ -122,30 +122,29 @@ export default function App() {
   return (
     <View style={tw("flex-1 ")}>
       <Camera style={tw("flex-1")} type={type} ref={cameraRef}>
-        <SafeAreaView
-        // style={tw("items-center flex-row justify-between  ")}
-        >
+        <SafeAreaView>
           <TouchableOpacity
-            style={tw("absolute top-0 right-0 mt-16 mr-4 bg-white rounded-2xl")}
+            style={tw(
+              "absolute top-0 right-0 mt-16 mr-4 bg-blue-200 rounded-2xl items-center p-10"
+            )}
             onPress={chooseFromLibrary}
           >
             <AntDesign name="picture" size={70} color="black" />
+            <Text style={tw("text-black font-bold mt-2")}>Gallery</Text>
           </TouchableOpacity>
         </SafeAreaView>
 
-        <SafeAreaView style={tw("absolute bottom-4")}>
-          <SafeAreaView style={tw("items-center flex-row justify-between ")}>
+        <SafeAreaView style={tw("absolute bottom-8")}>
+          <SafeAreaView style={tw(" flex-row ml-16 ")}>
             <ModalResults showModal={showModal} objectLables={objectLables} />
             <TouchableOpacity
-              style={tw("bg-white rounded-2xl ")}
-              onPress={
-                () => takePhotoFromCamera()
-                // const base64 = await takePhotoFromCamera();
-                // Alert.alert("Debug", JSON.stringify(r))
-                // console.log(JSON.stringify(base64));
-              }
+              style={tw("bg-blue-200 rounded-2xl p-2 ml-10 items-center ")}
+              onPress={() => takePhotoFromCamera()}
             >
-              <AntDesign name="camerao" size={70} color="black" />
+              <AntDesign name="camerao" size={50} color="black" />
+              <Text style={tw("text-black font-bold mt-2")}>
+                Take A Picture
+              </Text>
             </TouchableOpacity>
           </SafeAreaView>
         </SafeAreaView>

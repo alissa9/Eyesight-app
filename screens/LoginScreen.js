@@ -27,6 +27,9 @@ const LoginScreen = () => {
         style={tw("flex-1")}
         source={require("../assets/bgpic1.png")}
       >
+        <Text style={tw("text-white absolute bottom-60 mb-6 text-xl ml-24")}>
+          Welcome To Eyesight
+        </Text>
         <TouchableOpacity
           style={[
             tw("absolute bottom-40 w-52 bg-white p-4 rounded-2xl"),
@@ -34,8 +37,17 @@ const LoginScreen = () => {
           ]}
         >
           <Text style={tw("font-bold text-center")} onPress={signInWithGoogle}>
-            {" "}
-            Sign in to Eyesight{" "}
+            Sign in with Google
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            tw("absolute bottom-20 w-52 bg-white p-4 rounded-2xl"),
+            { marginHorizontal: "25%", marginVertical: "6%" },
+          ]}
+        >
+          <Text style={tw("font-bold text-center")} onPress={signInWithGoogle}>
+            Register
           </Text>
         </TouchableOpacity>
       </ImageBackground>

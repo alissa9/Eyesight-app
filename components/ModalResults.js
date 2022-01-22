@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import tw from "tailwind-rn";
+
+import { AntDesign } from "@expo/vector-icons";
 const ModalResults = ({ showModal, objectLables }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -20,28 +22,29 @@ const ModalResults = ({ showModal, objectLables }) => {
         }}
       >
         <View style={tw("flex-1 justify-center items-center ")}>
-          <View style={tw(" bg-white rounded-md  items-center ")}>
+          <View style={tw(" bg-blue-100 rounded-md items-center mb-24 p-8 ")}>
             {objectLables &&
               objectLables.map((label, index) => (
-                <Text style={tw("font-extrabold mt-2 ")} key={index}>
+                <Text style={tw("font-extrabold  text-xl ")} key={index}>
                   {label.description}
                 </Text>
               ))}
             <Pressable
-              style={tw("rounded-md p-6 bg-gray-200 mt-10 mb-10 ")}
+              style={tw("rounded-md  bg-gray-300 p-4 mt-4  ")}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={tw("text-blue-400 font-bold")}>Hide Results</Text>
+              <Text style={tw("text-red-400 font-bold")}>Hide Results</Text>
             </Pressable>
           </View>
         </View>
       </Modal>
 
       <Pressable
-        style={tw("bg-white p-3 rounded-2xl ")}
+        style={tw("bg-blue-200 p-3 rounded-2xl items-center  ")}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={tw("text-red-400 font-bold")}>Show Results</Text>
+        <AntDesign name="infocirlce" size={50} color="black" />
+        <Text style={tw("text-black font-bold mt-2")}>Show Results</Text>
       </Pressable>
     </View>
   );

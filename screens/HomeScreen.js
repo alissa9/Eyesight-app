@@ -55,13 +55,13 @@ const HomeScreen = () => {
           "rounded-xl bg-gray-100 flex-row items-center justify-between px-3 "
         )}
       >
-        <Text style={tw(" font-bold italic  text-xl text-blue-700")}>
+        <Text style={tw(" font-bold italic  text-xl text-black ")}>
           Welcome {user.displayName} !
         </Text>
         <TouchableOpacity>
           <Image
             source={{ uri: user.photoURL }}
-            style={tw("h-16 w-16 rounded-full mt-")}
+            style={tw("h-16 w-16 rounded-full ")}
           />
         </TouchableOpacity>
       </View>
@@ -73,11 +73,11 @@ const HomeScreen = () => {
         <TextInput
           onChangeText={setName}
           value={name}
-          style={tw("h-14 text-xl bg-gray-200")}
+          style={tw("h-14 text-xl bg-gray-200 rounded-xl ")}
           placeholder=" Enter your Text"
         />
         <TouchableOpacity
-          style={tw("w-40  p-5 rounded-2xl bg-blue-400 mt-5  self-center")}
+          style={tw("w-40  p-5 rounded-2xl bg-blue-400  mt-5 self-center")}
           title="Speak it"
           onPress={textToSpeech}
         >
