@@ -125,7 +125,7 @@ export default function App() {
         <SafeAreaView>
           <TouchableOpacity
             style={tw(
-              "absolute top-0 right-0 mt-16 mr-4 bg-blue-200 rounded-2xl items-center p-10"
+              "absolute top-0 right-0 mt-16 mr-4 bg-blue-200 rounded-2xl items-center p-2"
             )}
             onPress={chooseFromLibrary}
           >

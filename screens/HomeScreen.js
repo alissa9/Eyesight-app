@@ -45,7 +45,7 @@ const HomeScreen = () => {
           <Image
             style={tw("h-20  bg-transparent")}
             resizeMode="contain"
-            source={require("../assets/logo2.png")}
+            source={require("../assets/logo.png")}
           />
         </TouchableOpacity>
       </View>
@@ -66,8 +66,8 @@ const HomeScreen = () => {
         </TouchableOpacity>
       </View>
       {/* End of Header */}
-      {/* Start of Body */}
 
+      {/* Start of Body */}
       <View style={tw("m-10")}>
         <Text style={tw("mb-5 font-bold text-2xl ")}>Text To Speech</Text>
         <TextInput
@@ -84,7 +84,6 @@ const HomeScreen = () => {
           <Text style={tw("text-center text-white text-xl")}> Speak it </Text>
         </TouchableOpacity>
       </View>
-
       {/* End of Body */}
     </SafeAreaView>
   );

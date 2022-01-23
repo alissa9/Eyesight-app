@@ -25,15 +25,19 @@ const LoginScreen = () => {
       <ImageBackground
         resizeMode="cover"
         style={tw("flex-1")}
-        source={require("../assets/bgpic1.png")}
+        source={require("../assets/bgPic.jpg")}
       >
-        <Text style={tw("text-white absolute bottom-60 mb-6 text-xl ml-24")}>
+        <Text
+          style={tw(
+            "text-white absolute bottom-60 mb-2 text-3xl ml-8 p-4 mb-44"
+          )}
+        >
           Welcome To Eyesight
         </Text>
         <TouchableOpacity
           style={[
-            tw("absolute bottom-40 w-52 bg-white p-4 rounded-2xl"),
-            { marginHorizontal: "25%", marginVertical: "6%" },
+            tw("absolute bottom-80 w-52 bg-white p-5 rounded-3xl "),
+            { marginHorizontal: "25%", marginVertical: "4%" },
           ]}
         >
           <Text style={tw("font-bold text-center")} onPress={signInWithGoogle}>
@@ -42,11 +46,11 @@ const LoginScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[
-            tw("absolute bottom-20 w-52 bg-white p-4 rounded-2xl"),
-            { marginHorizontal: "25%", marginVertical: "6%" },
+            tw("absolute bottom-60 w-52 bg-white p-5 rounded-3xl"),
+            { marginHorizontal: "25%", marginVertical: "4%" },
           ]}
         >
-          <Text style={tw("font-bold text-center")} onPress={signInWithGoogle}>
+          <Text style={tw("font-bold text-center")} >
             Register
           </Text>
         </TouchableOpacity>
