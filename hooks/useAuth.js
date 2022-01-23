@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
-import { View, Text } from "react-native";
 import * as Google from "expo-google-app-auth";
 import {
   GoogleAuthProvider,

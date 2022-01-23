@@ -31,8 +31,8 @@ const HomeScreen = () => {
     const tts = `${name}`;
     options = {
       voice: "com.apple.ttsbundle.siri_Arthur_en-GB_compact",
-      pitch: 1.2,
-      rate: 0.8,
+      pitch: 1,
+      rate: 0.7,
     };
     Speech.speak(tts, options);
   };
@@ -81,7 +81,7 @@ const HomeScreen = () => {
           title="Speak it"
           onPress={textToSpeech}
         >
-          <Text style={tw("text-center text-white text-xl")}> Speak it </Text>
+          <Text style={tw("text-center text-white text-xl")}> Speak </Text>
         </TouchableOpacity>
       </View>
       {/* End of Body */}

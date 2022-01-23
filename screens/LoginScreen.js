@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import useAuth from "../hooks/useAuth";
 import tw from "tailwind-rn";
+import { AntDesign } from "@expo/vector-icons";
 
 const LoginScreen = () => {
   const { signInWithGoogle, loading } = useAuth();
@@ -36,13 +37,19 @@ const LoginScreen = () => {
         </Text>
         <TouchableOpacity
           style={[
-            tw("absolute bottom-80 w-52 bg-white p-5 rounded-3xl "),
+            tw(
+              "absolute bottom-80 w-52 bg-white p-5 rounded-3xl flex-row items-center "
+            ),
             { marginHorizontal: "25%", marginVertical: "4%" },
           ]}
         >
-          <Text style={tw("font-bold text-center")} onPress={signInWithGoogle}>
+          <Text
+            style={tw("font-bold text-center mr-1")}
+            onPress={signInWithGoogle}
+          >
             Sign in with Google
           </Text>
+          <AntDesign name="google" size={26} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -50,9 +57,15 @@ const LoginScreen = () => {
             { marginHorizontal: "25%", marginVertical: "4%" },
           ]}
         >
-          <Text style={tw("font-bold text-center")} >
-            Register
-          </Text>
+          <Text style={tw("font-bold text-center")}>Login with Email</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            tw("absolute bottom-40 w-52 bg-white p-5 rounded-3xl"),
+            { marginHorizontal: "25%", marginVertical: "4%" },
+          ]}
+        >
+          <Text style={tw("font-bold text-center")}>Register</Text>
         </TouchableOpacity>
       </ImageBackground>
     </View>
