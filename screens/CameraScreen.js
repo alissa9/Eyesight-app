@@ -125,12 +125,12 @@ export default function App() {
         <SafeAreaView>
           <TouchableOpacity
             style={tw(
-              "absolute top-0 right-0 mt-16 mr-4 bg-blue-200 rounded-2xl items-center p-2"
+              "absolute top-0 right-0 mt-12 mr-4 bg-blue-200 rounded-2xl items-center p-0.5"
             )}
             onPress={chooseFromLibrary}
           >
             <AntDesign name="picture" size={70} color="black" />
-            <Text style={tw("text-black font-bold mt-2")}>Gallery</Text>
+            <Text style={tw("text-black font-bold ")}>Gallery</Text>
           </TouchableOpacity>
         </SafeAreaView>
 

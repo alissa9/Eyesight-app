@@ -21,19 +21,23 @@ const ModalResults = ({ showModal, objectLables }) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={tw("flex-1 justify-center items-center ")}>
-          <View style={tw(" bg-blue-100 rounded-md items-center mb-24 p-8 ")}>
+        <View style={tw("flex-1 justify-center items-center  ")}>
+          <View
+            style={tw(
+              " bg-blue-100 rounded-2xl items-center mb-24 p-8 bg-blue-200"
+            )}
+          >
             {objectLables &&
               objectLables.map((label, index) => (
-                <Text style={tw("font-extrabold  text-xl ")} key={index}>
+                <Text style={tw("font-extrabold  text-xl  ")} key={index}>
                   {label.description}
                 </Text>
               ))}
             <Pressable
-              style={tw("rounded-md  bg-gray-300 p-4 mt-4  ")}
+              style={tw("rounded-xl  bg-gray-400 mt-4 p-5  ")}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={tw("text-red-400 font-bold")}>Hide Results</Text>
+              <Text style={tw("text-black font-bold")}>Hide Results</Text>
             </Pressable>
           </View>
         </View>
