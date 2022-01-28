@@ -74,9 +74,10 @@ export default function App() {
       console.log(reponse);
     })();
   }, []);
+  const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
   async function checkForLabels(base64) {
     return await fetch(
-      "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCEzWUbpQmcga6G7TL4cz3d1sWGoPdFPzM",
+      "https://vision.googleapis.com/v1/images:annotate?key=" + GOOGLE_API_KEY,
       {
         method: "POST",
         body: JSON.stringify({
