@@ -1,14 +1,51 @@
-import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  Alert,
+  Modal,
+  Text,
+  Pressable,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
 import tw from "tailwind-rn";
-
+import * as Speech from "expo-speech";
 import { AntDesign } from "@expo/vector-icons";
+
+
 const ModalResults = ({ showModal, objectLables }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [voices, setVoices] = useState([]);
+  const [selectedLang, setselectedLang] = useState({
+    identifier: "com.apple.ttsbundle.siri_Martha_en-GB_compact",
+    language: "en-GB",
+    name: "Martha",
+    quality: "Default",
+  });
 
-  // if (modalVisible) {
-  //   return <></>;
-  // }
+  // Gets a list of all the available languages and voices
+  useEffect(() => {
+    (async () => {
+      const allVoices = await Speech.getAvailableVoicesAsync();
+      setVoices(allVoices);
+      // console.log(allVoices);
+    })();
+  }, []);
+
+  // Function to read the results from the Google Vision API
+  const textToSpeech = (voice) => {
+    const text = objectLables.map((label) => label.description).join("  ");
+    const tts = `${text}`;
+    const options = {
+      voice: voice.identifier,
+      pitch: 1,
+      rate: 1,
+      language: voice.language,
+    };
+    Speech.speak(tts, options);
+  };
+
   return (
     <View style={tw(" justify-center items-center ")}>
       <Modal
@@ -17,7 +54,7 @@ const ModalResults = ({ showModal, objectLables }) => {
         visible={modalVisible}
         onRequestClose={() => {
           console.log("closed");
-          Aert.alert("Modal has been closed.");
+          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
@@ -27,6 +64,16 @@ const ModalResults = ({ showModal, objectLables }) => {
               " bg-blue-100 rounded-2xl items-center mb-24 p-8 bg-blue-200"
             )}
           >
+            <View style={tw("flex flex-row flex-wrap ")}>
+              {voices.map((voice) => (
+                <TouchableOpacity
+                  style={tw("m-3 ")}
+                  onPress={() => textToSpeech(voice)}
+                >
+                  <Text> {voice.language}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
             {objectLables &&
               objectLables.map((label, index) => (
                 <Text style={tw("font-extrabold  text-xl  ")} key={index}>

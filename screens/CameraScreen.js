@@ -88,7 +88,7 @@ export default function App() {
               },
               features: [
                 {
-                  maxResults: 10,
+                  maxResults: 5,
                   type: "LABEL_DETECTION",
                 },
               ],
