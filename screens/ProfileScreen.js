@@ -18,18 +18,14 @@ const ProfileScreen = () => {
   const { user, logout } = useAuth();
   // console.log(user);
 
-  const [bio, setBio] = useState(null);
-  const [age, setAge] = useState(null);
-  const [occupation, setOccupation] = useState(null);
-  const incompleteForm = !bio || !age || !occupation;
+  const [feedback, setFeedback] = useState(null);
+  const incompleteForm = !feedback;
 
-  const updateUserProfile = () => {
+  const sendFeedback = () => {
     setDoc(doc(db, "users", user.uid), {
       id: user.uid,
       displayName: user.displayName,
-      bio: bio,
-      occupation: occupation,
-      age: age,
+      feedback: feedback,
       timestamp: serverTimestamp(),
     })
       .then(() => {
@@ -51,40 +47,20 @@ const ProfileScreen = () => {
       <Text style={tw("text-2xl text-gray-700 p-2 font-bold")}>
         Name: {user.displayName}
       </Text>
-      <Text style={tw("text-xl  text-center text-gray-700 p-2 font-bold")}>
+      <Text style={tw("text-xl  text-center text-gray-700 p-6 font-bold")}>
         Email: {user.email}
       </Text>
 
-      <Text style={tw("text-lg  text-center p-3 font-bold text-blue-400")}>
-        Biographical info
+      <Text style={tw("text-lg  text-center p-4 font-bold text-blue-400")}>
+        Send Feedback
+      </Text>
+      <Text style={tw("text-base  text-center p-8 font-bold text-gray-400")}>
+        Tell us what you love about the app, or what we could be doing better to
+        imporve it
       </Text>
 
-      <TextInput onChangeText={setBio} placeholder="Enter your info" />
-      <Text style={tw(" text-lg text-center p-2 font-bold")}></Text>
-
-      <Text style={tw("text-lg text-center p-2 font-bold text-blue-400")}>
-        Occupation
-      </Text>
-      <TextInput
-        value={occupation}
-        onChangeText={setOccupation}
-        placeholder="Enter your Occupation"
-      />
-      <Text style={tw("text-lg text-center p-2 font-bold ")}></Text>
-
-      <Text style={tw("text-lg text-center p-2 font-bold text-blue-400")}>
-        The Age
-      </Text>
-      <TextInput
-        value={age}
-        onChangeText={setAge}
-        placeholder="Enter your Age"
-        maxLength={2}
-        keyboardType="numeric"
-      />
-      <Text
-        style={tw("text-lg text-center p-2 font-bold text-green-400")}
-      ></Text>
+      <TextInput onChangeText={setFeedback} placeholder="Enter feedback" />
+      <Text style={tw(" text-lg text-center p-3 font-bold")}></Text>
 
       <TouchableOpacity
         disabled={incompleteForm}
@@ -92,16 +68,13 @@ const ProfileScreen = () => {
           tw("w-64 p-3 rounded-xl  "),
           incompleteForm ? tw("bg-gray-400") : tw("bg-blue-400"),
         ]}
-        onPress={updateUserProfile}
+        onPress={sendFeedback}
       >
-        <Text style={tw("text-center text-white text-xl")}>
-          {" "}
-          Update Profile{" "}
-        </Text>
+        <Text style={tw("text-center text-white text-xl")}> Submit </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={tw("w-64 p-3 rounded-xl bg-red-500 mt-12 ")}
+        style={tw("w-64 p-3 rounded-xl bg-red-500 mt-16 ")}
         onPress={logout}
       >
         <Text style={tw("text-center text-white text-xl")}> Logout </Text>
