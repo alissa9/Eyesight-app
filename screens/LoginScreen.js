@@ -30,7 +30,7 @@ const LoginScreen = () => {
       >
         <Text
           style={tw(
-            "text-white absolute bottom-60 mb-2 text-3xl ml-8 p-4 mb-44"
+            "text-white absolute bottom-60 text-3xl ml-8 p-4 mb-40"
           )}
         >
           Welcome To Eyesight
@@ -38,35 +38,20 @@ const LoginScreen = () => {
         <TouchableOpacity
           style={[
             tw(
-              "absolute bottom-80 w-52 bg-white p-5 rounded-3xl flex-row items-center "
+              "absolute bottom-60 w-52 bg-white p-5 rounded-3xl flex-row items-center "
             ),
             { marginHorizontal: "25%", marginVertical: "4%" },
           ]}
         >
           <Text
-            style={tw("font-bold text-center mr-1")}
+            style={tw("font-bold text-center mr-1 items-center")}
             onPress={signInWithGoogle}
           >
             Sign in with Google
           </Text>
           <AntDesign name="google" size={26} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            tw("absolute bottom-60 w-52 bg-white p-5 rounded-3xl"),
-            { marginHorizontal: "25%", marginVertical: "4%" },
-          ]}
-        >
-          <Text style={tw("font-bold text-center")}>Login with Email</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            tw("absolute bottom-40 w-52 bg-white p-5 rounded-3xl"),
-            { marginHorizontal: "25%", marginVertical: "4%" },
-          ]}
-        >
-          <Text style={tw("font-bold text-center")}>Register</Text>
-        </TouchableOpacity>
+        
       </ImageBackground>
     </View>
   );

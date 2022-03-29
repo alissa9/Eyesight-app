@@ -47,21 +47,27 @@ const ProfileScreen = () => {
       <Text style={tw("text-2xl text-gray-700 p-2 font-bold")}>
         Name: {user.displayName}
       </Text>
-      <Text style={tw("text-xl  text-center text-gray-700 p-6 font-bold")}>
+      <Text style={tw("text-xl  text-center text-gray-700 p-2 font-bold")}>
         Email: {user.email}
       </Text>
 
-      <Text style={tw("text-lg  text-center p-4 font-bold text-blue-400")}>
+      <Text
+        style={tw("text-lg  text-center p-2 font-bold text-blue-400 mt-10")}
+      >
         Send Feedback
       </Text>
-      <Text style={tw("text-base  text-center p-8 font-bold text-gray-400")}>
+      <Text
+        style={tw("text-base  text-center p-2 font-bold text-gray-400 mb-8")}
+      >
         Tell us what you love about the app, or what we could be doing better to
         imporve it
       </Text>
 
-      <TextInput onChangeText={setFeedback} placeholder="Enter feedback" />
-      <Text style={tw(" text-lg text-center p-3 font-bold")}></Text>
-
+      <TextInput
+        onChangeText={setFeedback}
+        style={tw("h-14 text-lg bg-gray-200 rounded-xl text-center mb-20 ")}
+        placeholder=" Enter your Feedback"
+      />
       <TouchableOpacity
         disabled={incompleteForm}
         style={[

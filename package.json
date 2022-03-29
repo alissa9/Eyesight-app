@@ -25,7 +25,8 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "tailwind-rn": "^3.0.1",
-    "@react-native-picker/picker": "2.2.1"
+    "@react-native-picker/picker": "2.2.1",
+    "expo-av": "~10.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
