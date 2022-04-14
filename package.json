@@ -26,7 +26,8 @@
     "react-native-screens": "~3.10.1",
     "tailwind-rn": "^3.0.1",
     "@react-native-picker/picker": "2.2.1",
-    "expo-av": "~10.2.0"
+    "expo-av": "~10.2.0",
+    "expo-updates": "~0.11.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
