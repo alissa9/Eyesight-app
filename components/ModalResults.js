@@ -27,12 +27,17 @@ const ModalResults = ({ showModal, objectLables }) => {
   const [country, setCountry] = useState("");
   // Gets a list of all the available languages and voices
   useEffect(() => {
+    if (objectLables){
+     textToSpeech(selectedLang);
+    }
+    
     (async () => {
       const allVoices = await Speech.getAvailableVoicesAsync();
       setVoices(allVoices);
       // console.log(allVoices);
     })();
-  }, []);
+  
+  }, [objectLables]);
 
   // Function to read the results from the Google Vision API
   const textToSpeech = (voice) => {
@@ -41,7 +46,7 @@ const ModalResults = ({ showModal, objectLables }) => {
     const options = {
       voice: voice.identifier,
       pitch: 1,
-      rate: 1,
+      rate: 0.7,
       language: voice.language,
     };
     Speech.speak(tts, options);
